@@ -73,7 +73,9 @@
     <!-- Header Section -->
     <header class="p-8 border-b border-white/5 glass-card sticky top-0 z-50 flex flex-col md:flex-row justify-between items-center gap-6">
         <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center font-black text-slate-900 text-2xl shadow-lg shadow-emerald-500/20">G</div>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                <img src="LOGO.png" alt="GWNG Logo" class="w-full h-full object-contain">
+            </div>
             <div>
                 <h1 class="text-sm font-black uppercase tracking-tighter leading-none">Great White North Growers</h1>
                 <p class="text-[10px] text-emerald-400 font-bold uppercase tracking-[0.3em] mt-1">Premium Cultivar Catalog</p>
@@ -97,7 +99,7 @@
             fdr: {
                 id: 'fdr', name: "Foi De", sub: "Roi", lineage: ["King Louis XIII", "White Tahoe OG"],
                 breeder: "GWNG SELECTION", type: "Premium Indica Dominant", 
-                description: "A cultivar fit for royalty, 'Foi de Roi' translates to 'Faith of the King.' Renowned for its intense gassy funk and deep pine resin aromas. Exceptionally dense bud structure with jewel-like crystalline trichomes.",
+                description: "A cultivar fit for royalty, 'Foi de Roi' translates to 'Faith of the King.' Renowned for its intense gassy funk and deep pine resin aromas. Exceptionally dense bud s[...]
                 market: "Positioned as a pinnacle heavy-hitter, Foi de Roi is designed for those seeking a 'couch-lock' experience. Ideal for legacy connoisseurs.",
                 img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
                 potency: "32-36%", total: "40.0%+", effects: ["PROFOUND SEDATION", "HEAVY PHYSICAL", "SLEEP-AID"],
@@ -108,7 +110,7 @@
             orangeslushie: {
                 id: 'orangeslushie', name: "Orange", sub: "Slushie", lineage: ["Orange Cookie", "Grape Pie"],
                 breeder: "GWNG SELECTION", type: "Balanced Hybrid",
-                description: "A refreshing blast of zesty citrus and sweet candy undertones. Perfectly captures the essence of a chilled citrus beverage. Neon-green buds with orange-scented trichomes.",
+                description: "A refreshing blast of zesty citrus and sweet candy undertones. Perfectly captures the essence of a chilled citrus beverage. Neon-green buds with orange-scented trich[...]
                 market: "Ideal for daytime use or social settings, providing an immediate burst of cerebral energy and euphoria.",
                 img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
                 potency: "22-26%", total: "29.0%+", effects: ["ENERGETIC", "MOOD-ELEVATING", "TALKATIVE"],
@@ -130,7 +132,7 @@
             runtzpie: {
                 id: 'runtzpie', name: "Runtz", sub: "Pie", lineage: ["Runtz", "Georgia Pie"],
                 breeder: "GWNG SELECTION", type: "Hybrid Selection",
-                description: "The ultimate dessert cultivar, blending sugary candy notes with savory baked fruit. Bright, mood-elevating cerebral lift transitions into smooth physical relaxation.",
+                description: "The ultimate dessert cultivar, blending sugary candy notes with savory baked fruit. Bright, mood-elevating cerebral lift transitions into smooth physical relaxation.[...]
                 market: "Favored for incredible shelf appeal and intense aromatics. Perfect for social evenings or creative indulgence.",
                 img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
                 potency: "27-31%", total: "34.0%+", effects: ["EUPHORIC", "HAPPY", "TALKATIVE"],
@@ -231,8 +233,8 @@
                                 <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">${c.type} • ${c.potency} THC</p>
                             </div>
                         </div>
-                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-500 group-hover:text-emerald-500 transition-transform duration-500" id="arrow-${c.id}">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-500 group-hover:text-emerald-500 transition-transform duration-500" i[...]
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6[...]
                         </div>
                     </button>
                     
@@ -251,7 +253,7 @@
                                     <div class="glass-card rounded-2xl p-6">
                                         <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-4">Reported Effects</div>
                                         <div class="flex flex-wrap gap-2">
-                                            ${c.effects.map(e => `<span class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[9px] font-black border border-emerald-500/20 uppercase tracking-widest">${e}</span>`).join('')}
+                                            ${c.effects.map(e => `<span class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[9px] font-black border border-emerald-500/20 upper[...]
                                         </div>
                                     </div>
                                 </div>
@@ -284,8 +286,8 @@
                                     <!-- Tabs Area -->
                                     <div class="space-y-6">
                                         <div class="flex gap-8 border-b border-white/10">
-                                            <button onclick="setInternalTab('${c.id}', 'terps')" id="tab-${c.id}-terps" class="inner-tab-${c.id} active-tab pb-4 text-xs font-bold uppercase tracking-widest">Terpene Profile</button>
-                                            <button onclick="setInternalTab('${c.id}', 'labs')" id="tab-${c.id}-labs" class="inner-tab-${c.id} pb-4 text-xs font-bold uppercase tracking-widest text-slate-500">Analysis</button>
+                                            <button onclick="setInternalTab('${c.id}', 'terps')" id="tab-${c.id}-terps" class="inner-tab-${c.id} active-tab pb-4 text-xs font-bold uppercase tracki[...]
+                                            <button onclick="setInternalTab('${c.id}', 'labs')" id="tab-${c.id}-labs" class="inner-tab-${c.id} pb-4 text-xs font-bold uppercase tracking-widest tex[...]
                                         </div>
                                         
                                         <div id="view-${c.id}-terps" class="inner-view-${c.id}">
