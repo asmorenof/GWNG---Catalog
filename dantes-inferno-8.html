@@ -3,461 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Great White North Growers - Dante's Inferno #8</title>
+    <title>GWNG - Premium Cultivar Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-light-green: #a2e0b1;
-            --dark-green: #235e41;
-            --text-dark: #1a202c;
-            --text-gray: #4a5568;
-            --bg-gray: #f7fafc;
-            --white: #ffffff;
-            --border-color: #e2e8f0;
-            --tag-purple: #f3e8ff;
-            --tag-purple-text: #6b21a8;
-            --tag-green: #e6fffa;
-            --tag-green-text: #234e52;
-            --tag-blue: #ebf8ff;
-            --tag-blue-text: #2b6cb0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
         body {
-            background-color: #edf2f7;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
         }
-
-        .container {
-            background-color: var(--white);
-            max-width: 1000px;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* --- Header --- */
-        .header {
-            background-color: var(--primary-light-green);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .accordion-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 800;
-            font-size: 14px;
-            line-height: 1.1;
-            text-transform: uppercase;
+        .accordion-header {
+            transition: all 0.3s ease;
         }
-
-        .nav-links {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--text-dark);
-            text-transform: uppercase;
+        .accordion-header:hover {
+            background: rgba(16, 185, 129, 0.05);
         }
-
-        .nav-links span {
-            margin-left: 15px;
-            opacity: 0.8;
-            cursor: pointer;
+        .accordion-header.active {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
         }
-
-        /* --- Main Layout --- */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1.8fr;
-            gap: 40px;
-            padding: 40px;
-            background-color: #fcfcfc;
+        .gradient-text {
+            background: linear-gradient(135deg, #a2e0b1 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        /* --- Left Column --- */
-        .left-col {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .product-image-container {
-            background-color: var(--bg-gray);
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .product-image-container img {
-            max-width: 100%;
-            border-radius: 8px;
-            mix-blend-mode: multiply;
-        }
-
-        .info-card {
-            background-color: var(--white);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .info-label {
-            font-size: 10px;
-            color: #a0aec0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .lineage-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--dark-green);
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .lineage-text span {
-            color: #cbd5e0;
-            margin: 0 5px;
-            font-weight: 300;
-        }
-
-        .breeder-text {
-            font-size: 10px;
-            color: var(--text-gray);
-            font-weight: 600;
-        }
-
-        .effects-wrapper {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .effect-tag {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .effect-euphoric { background-color: var(--tag-purple); color: var(--tag-purple-text); }
-        .effect-relaxing { background-color: var(--tag-green); color: var(--tag-green-text); }
-        .effect-sedating { background-color: var(--tag-blue); color: var(--tag-blue-text); }
-
-        /* --- Right Column --- */
-        .right-col {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .premium-tag {
-            background-color: #1a202c;
-            color: var(--white);
-            font-size: 10px;
-            font-weight: 700;
-            padding: 5px 10px;
-            border-radius: 4px;
-            display: inline-block;
-            align-self: flex-start;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-        }
-
-        .product-title {
-            font-size: 38px;
-            font-weight: 900;
-            color: #1a202c;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-        }
-
-        .product-title span {
-            color: var(--dark-green);
-        }
-
-        .product-description {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-gray);
-            margin-bottom: 20px;
-        }
-
-        .product-description p {
-            margin-bottom: 15px;
-        }
-
-        .divider {
-            height: 1px;
-            background-color: var(--border-color);
-            margin: 20px 0;
-        }
-
-        /* Flavor Profile */
-        .section-header {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .flavor-tags {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .flavor-tag {
-            background-color: #eaf8f0;
-            color: var(--dark-green);
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .flavor-tag::before {
-            content: '';
-            display: block;
-            width: 6px;
+        .terpene-bar {
             height: 6px;
-            border-radius: 50%;
-            background-color: #48bb78;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
-
-        /* Profiles Grid */
-        .profiles-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .terpene-fill {
+            height: 100%;
+            background: #10b981;
+            border-radius: 3px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .profile-card {
-            background-color: var(--bg-gray);
-            border-radius: 12px;
-            padding: 20px;
+        .active-tab {
+            color: #10b981;
+            border-bottom: 2px solid #10b981;
         }
-
-        .profile-stat {
-            margin-bottom: 20px;
+        .content-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .profile-stat-label {
-            font-size: 10px;
-            color: #a0aec0;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 5px;
+        .content-wrapper.open {
+            max-height: 3000px; /* Large enough to fit content */
         }
-
-        .profile-stat-value {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--dark-green);
-        }
-
-        .terpene-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        .terpene-header-title {
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .terpene-header-value {
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--dark-green);
-        }
-
-        .terpene-list {
-            list-style: none;
-        }
-
-        .terpene-list li {
-            font-size: 12px;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .terpene-number {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 18px;
-            height: 18px;
-            background-color: var(--white);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 10px;
-            color: #a0aec0;
-            font-weight: 700;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            .profiles-grid {
-                grid-template-columns: 1fr;
-            }
-            .header {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="min-h-screen">
 
-    <div class="container">
-        <header class="header">
-            <div class="logo">
-                GREAT WHITE NORTH<br>GROWERS
+    <!-- Header Section -->
+    <header class="p-8 border-b border-white/5 glass-card sticky top-0 z-50 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center font-black text-slate-900 text-2xl shadow-lg shadow-emerald-500/20">G</div>
+            <div>
+                <h1 class="text-sm font-black uppercase tracking-tighter leading-none">Great White North Growers</h1>
+                <p class="text-[10px] text-emerald-400 font-bold uppercase tracking-[0.3em] mt-1">Premium Cultivar Catalog</p>
             </div>
-            <div class="nav-links">
-                <span>PREMIUM</span>
-                <span>CULTIVAR</span>
-                <span>CATALOG</span>
-            </div>
-        </header>
+        </div>
+        <div class="flex gap-4">
+            <button class="px-6 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] transition border border-white/5">
+                Technical Data Sheet
+            </button>
+        </div>
+    </header>
 
-        <main class="main-content">
-            
-            <div class="left-col">
-                <div class="product-image-container">
-                    <img src="https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif" alt="Dante's Inferno #8">
-                </div>
+    <main class="max-w-7xl mx-auto p-4 md:p-12">
+        <div id="accordionContainer" class="space-y-4">
+            <!-- Populated by JS -->
+        </div>
+    </main>
 
-                <div class="info-card">
-                    <span class="info-label">LINEAGE</span>
-                    <div class="lineage-text">
-                        Oreoz <span>×</span> Devil Driver
-                    </div>
-                    <div class="breeder-text">
-                        BREEDER: CLEARWATER X TIKI MADMAN
-                    </div>
-                </div>
+    <script>
+        const cultivars = {
+            fdr: {
+                id: 'fdr', name: "Foi De", sub: "Roi", lineage: ["King Louis XIII", "White Tahoe OG"],
+                breeder: "GWNG SELECTION", type: "Premium Indica Dominant", 
+                description: "A cultivar fit for royalty, 'Foi de Roi' translates to 'Faith of the King.' Renowned for its intense gassy funk and deep pine resin aromas. Exceptionally dense bud structure with jewel-like crystalline trichomes.",
+                market: "Positioned as a pinnacle heavy-hitter, Foi de Roi is designed for those seeking a 'couch-lock' experience. Ideal for legacy connoisseurs.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "32-36%", total: "40.0%+", effects: ["PROFOUND SEDATION", "HEAVY PHYSICAL", "SLEEP-AID"],
+                flavors: [{e:"⛽",l:"JET FUEL"},{e:"🌲",l:"PINE"},{e:"🌶️",l:"SPICE"}],
+                terps: {total: "3.4%+", list:[{n:"Beta-Caryophyllene",v:"1.12%"},{n:"Myrcene",v:"0.84%"},{n:"Limonene",v:"0.62%"},{n:"Humulene",v:"0.45%"},{n:"Alpha-Pinene",v:"0.37%"}]},
+                lab: {"THC Potential": "34.2%", "CBD Potential": "<0.1%", "Total Cannabinoids": "40.0%+"}
+            },
+            orangeslushie: {
+                id: 'orangeslushie', name: "Orange", sub: "Slushie", lineage: ["Orange Cookie", "Grape Pie"],
+                breeder: "GWNG SELECTION", type: "Balanced Hybrid",
+                description: "A refreshing blast of zesty citrus and sweet candy undertones. Perfectly captures the essence of a chilled citrus beverage. Neon-green buds with orange-scented trichomes.",
+                market: "Ideal for daytime use or social settings, providing an immediate burst of cerebral energy and euphoria.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "22-26%", total: "29.0%+", effects: ["ENERGETIC", "MOOD-ELEVATING", "TALKATIVE"],
+                flavors: [{e:"🍊",l:"MANDARIN"},{e:"🍬",l:"TART"},{e:"🥤",l:"SODA"}],
+                terps: {total: "2.8%+", list:[{n:"Limonene",v:"0.95%"},{n:"Myrcene",v:"0.72%"},{n:"Pinene",v:"0.54%"},{n:"Linalool",v:"0.35%"},{n:"Caryophyllene",v:"0.24%"}]},
+                lab: {"THC Potential": "24.5%", "Total Quantified": "29.0%+"}
+            },
+            permmarker: {
+                id: 'permmarker', name: "Permanent", sub: "Gushers", lineage: ["Permanent Marker", "Gushers"],
+                breeder: "GWNG SELECTION", type: "Indica Dominant Hybrid",
+                description: "A pungent, 'inky' profile meeting the sweet, explosive candy notes of Gushers. Bridges the gap between industrial pungent aromatics and candy-gas sweetness.",
+                market: "Standout modern exotic. Favorite for evening creative sessions or high-end connoisseurs seeking complex sensory profiles.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "28-32%", total: "35.0%+", effects: ["EUPHORIC", "RELAXING", "CREATIVE"],
+                flavors: [{e:"🖊️",l:"INKY GAS"},{e:"🫐",l:"BERRY"},{e:"⛽",l:"DIESEL"}],
+                terps: {total: "3.1%+", list:[{n:"Beta-Caryophyllene",v:"0.98%"},{n:"Limonene",v:"0.84%"},{n:"Myrcene",v:"0.56%"},{n:"Linalool",v:"0.42%"},{n:"Humulene",v:"0.30%"}]},
+                lab: {"Total THC": "30.4%", "Total Quantified": "35.0%+"}
+            },
+            runtzpie: {
+                id: 'runtzpie', name: "Runtz", sub: "Pie", lineage: ["Runtz", "Georgia Pie"],
+                breeder: "GWNG SELECTION", type: "Hybrid Selection",
+                description: "The ultimate dessert cultivar, blending sugary candy notes with savory baked fruit. Bright, mood-elevating cerebral lift transitions into smooth physical relaxation.",
+                market: "Favored for incredible shelf appeal and intense aromatics. Perfect for social evenings or creative indulgence.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "27-31%", total: "34.0%+", effects: ["EUPHORIC", "HAPPY", "TALKATIVE"],
+                flavors: [{e:"🍓",l:"BERRY"},{e:"🥐",l:"DOUGH"},{e:"⛽",l:"GAS"}],
+                terps: {total: "2.9%+", list:[{n:"Limonene",v:"0.88%"},{n:"Caryophyllene",v:"0.74%"},{n:"Linalool",v:"0.52%"},{n:"Myrcene",v:"0.46%"},{n:"Humulene",v:"0.30%"}]},
+                lab: {"THC Range": "27-31%", "Total Cannabinoids": "34.0%+"}
+            },
+            planetgrapes: {
+                id: 'planetgrapes', name: "Planet", sub: "Grapes", lineage: ["Grape Diamond", "Chem D x I-95"],
+                breeder: "ETHOS GENETICS", type: "Indica Dominant Hybrid",
+                description: "A galactic journey into deep grape funk and high-potency relaxation. Massive, greasy flower structure with complex Artificial Grape Candy bouquet.",
+                market: "Favored by medical patients for managing chronic stress and deep insomnia. A true powerhouse with a sharp, oily fuel finish.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "25-30%", total: "34.0%+", effects: ["HEAVY SEDATIVE", "EUPHORIC", "DREAMY"],
+                flavors: [{e:"🍇",l:"GRAPE"},{e:"🌍",l:"EARTH"},{e:"⛽",l:"GAS"}],
+                terps: {total: "3.2%+", list:[{n:"Myrcene",v:"1.10%"},{n:"Caryophyllene",v:"0.78%"},{n:"Limonene",v:"0.64%"},{n:"Linalool",v:"0.42%"},{n:"Alpha-Pinene",v:"0.26%"}]},
+                lab: {"Total THC": "28.5%", "Total Cannabinoids": "34.0%+"}
+            },
+            godfatherog: {
+                id: 'godfatherog', name: "Godfather", sub: "OG", lineage: ["XXX OG", "Alpha OG"],
+                breeder: "GWNG SELECTION", type: "Ultra-High Potency Indica",
+                description: "Widely recognized as the 'Don of All OGs' for its immense potency and championship pedigree. Produces spade-shaped buds saturated in pearlescent trichomes.",
+                market: "Gold standard for experienced consumers. Delivers rapid cerebral euphoria that melts into profound, narcotic-like physical sedation.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "34%+", total: "39.8%", effects: ["TOTAL SEDATION", "HEAVY BODY", "NARCOTIC"],
+                flavors: [{e:"🌿",l:"KUSH"},{e:"🍇",l:"GRAPE"},{e:"🪵",l:"WOOD"}],
+                terps: {total: "3.5%", list:[{n:"Myrcene",v:"1.25%"},{n:"Caryophyllene",v:"0.82%"},{n:"Limonene",v:"0.64%"},{n:"Alpha-Pinene",v:"0.42%"},{n:"Humulene",v:"0.37%"}]},
+                lab: {"THC Delta-9": "34.2%", "Total Cannabinoids": "39.8%"}
+            },
+            rainbowpave: {
+                id: 'rainbowpave', name: "Rainbow", sub: "Pavé", lineage: ["Apples & Bananas", "Pavé"],
+                breeder: "IPS PHARMA", type: "Balanced Hybrid",
+                description: "A masterpiece of modern genetics. Represents the pinnacle of contemporary breeding. Buds are dense, almost obsidian in purple hue.",
+                market: "Staple for those seeking high-potency bag appeal and deep sensory immersion. Offers rapid, blissful cerebral onset.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "26-30%", total: "33%+", effects: ["EUPHORIC", "RELAXING", "CREATIVE"],
+                flavors: [{e:"🌈",l:"BERRY GAS"},{e:"🍎",l:"APPLE"},{e:"❄️",l:"MENTHOL"}],
+                terps: {total: "3.0%+", list:[{n:"Beta-Caryophyllene",v:"0.84%"},{n:"Limonene",v:"0.66%"},{n:"Linalool",v:"0.58%"},{n:"Humulene",v:"0.48%"},{n:"Myrcene",v:"0.44%"}]},
+                lab: {"THC Delta-9": "28.4%", "Total Quantified": "33%+"}
+            },
+            georgiaruntz: {
+                id: 'georgiaruntz', name: "Georgia", sub: "Runtz", lineage: ["Georgia Pie", "Runtz"],
+                breeder: "IPS PHARMA", type: "Balanced Hybrid",
+                description: "A summer harvest blend of sun-ripened peach dough and candied gas. Strikes a phenomenal balance between thick, doughy notes and sugary syrup sweetness.",
+                market: "Prized for its 'all-day' versatility. Uplifts mood and sparks conversation while keeping the experience grounded.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "26-30%", total: "33%+", effects: ["BALANCED", "EUPHORIC", "HAPPY"],
+                flavors: [{e:"🍑",l:"PEACH"},{e:"🍬",l:"CANDY"},{e:"🥐",l:"DOUGH"}],
+                terps: {total: "2.7%+", list:[{n:"Limonene",v:"0.82%"},{n:"Beta-Caryophyllene",v:"0.64%"},{n:"Linalool",v:"0.48%"},{n:"Myrcene",v:"0.42%"},{n:"Humulene",v:"0.34%"}]},
+                lab: {"THC Potential": "28.1%", "Total Quantified": "33%+"}
+            },
+            kushmints: {
+                id: 'kushmints', name: "Kush", sub: "Mints", lineage: ["Bubba Kush", "Animal Mints"],
+                breeder: "GWNG SELECTION", type: "Balanced Hybrid",
+                description: "A highly sought-after, perfectly balanced cultivar selected for its tight, dense bud structure and refreshingly unique terpene profile.",
+                market: "Commands strong market demand among legacy consumers seeking profound physical relaxation paired with a blissful head high.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "22-27%", total: "30.17%", effects: ["RELAXING", "UPLIFTING", "CALMING"],
+                flavors: [{e:"🌿",l:"MINT"},{e:"☕",l:"COFFEE"},{e:"🍫",l:"HASH"}],
+                terps: {total: "2.10%", list:[{n:"Limonene",v:"0.85%"},{n:"Beta-Caryophyllene",v:"0.65%"},{n:"Linalool",v:"0.35%"},{n:"Alpha-Pinene",v:"0.25%"}]},
+                lab: {"THCA": "28.50%", "Delta-9 THC": "0.45%", "CBGA": "1.10%", "CBG": "0.12%"}
+            },
+            strawberryfroyo: {
+                id: 'strawberryfroyo', name: "Strawberry", sub: "Froyo", lineage: ["Strawberry Cough", "Wedding Cake"],
+                breeder: "IPS PHARMA", type: "Balanced Hybrid",
+                description: "A decadent treat for the senses. Mimics the smooth, sweet, and tangy notes of frozen yogurt topped with fresh berries.",
+                market: "Premium choice for afternoon social gatherings or creative focus. Transitions into a soothing, creamy physical relaxation.",
+                img: "https://raw.githubusercontent.com/asmorenof/GWNG---Catalog/9af26414db955b7ed8b5608b42e05f4d335da0e3/photo-1603909223429-69bb7101f420.avif",
+                potency: "24-28%", total: "30%+", effects: ["UPLIFTING", "SOCIAL", "BLISSFUL"],
+                flavors: [{e:"🍓",l:"BERRY"},{e:"🍦",l:"CREAMY"},{e:"🍋",l:"TART"}],
+                terps: {total: "2.2%+", list:[{n:"Myrcene",v:"0.72%"},{n:"Limonene",v:"0.54%"},{n:"Linalool",v:"0.42%"},{n:"Beta-Caryophyllene",v:"0.32%"},{n:"Pinene",v:"0.20%"}]},
+                lab: {"Total THC": "26.4%", "Total Quantified": "30%+"}
+            }
+        };
 
-                <div class="info-card">
-                    <span class="info-label" style="display: flex; align-items: center; gap: 5px;">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                        EFFECTS
-                    </span>
-                    <div class="effects-wrapper">
-                        <span class="effect-tag effect-euphoric">EUPHORIC</span>
-                        <span class="effect-tag effect-relaxing">RELAXING</span>
-                        <span class="effect-tag effect-sedating">SEDATING</span>
-                    </div>
-                </div>
-            </div>
+        let currentId = null;
 
-            <div class="right-col">
-                <span class="premium-tag">PREMIUM CANNABIS STRAIN</span>
+        function init() {
+            renderAccordion();
+            toggleAccordion('fdr'); // Start with first one open
+        }
+
+        function renderAccordion() {
+            const container = document.getElementById('accordionContainer');
+            container.innerHTML = '';
+
+            Object.values(cultivars).forEach(c => {
+                const item = document.createElement('div');
+                item.className = 'glass-card rounded-2xl overflow-hidden';
+                item.id = `accordion-${c.id}`;
                 
-                <h1 class="product-title">DANTE'S INFERNO <span>#8</span></h1>
-                
-                <div class="product-description">
-                    <p>The abundant trichome production, combined with a sandy texture, makes this cultivar a hashmaker's dream. With moderate purpling and dense, sugary buds, the bag appeal is a solid 10/10.</p>
-                    <p>Agronomically, Dante's Inferno #8 excels with exceptional flower formation from top to bottom, maintaining density all the way down the stalk.</p>
-                </div>
-
-                <div class="divider"></div>
-
-                <div>
-                    <div class="section-header">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-                        FLAVOUR PROFILE
-                    </div>
-                    <div class="flavor-tags">
-                        <span class="flavor-tag">CREAMY</span>
-                        <span class="flavor-tag">FRUITY</span>
-                        <span class="flavor-tag">GAS</span>
-                    </div>
-                </div>
-
-                <div class="profiles-grid">
+                item.innerHTML = `
+                    <button onclick="toggleAccordion('${c.id}')" id="header-${c.id}" class="accordion-header w-full p-6 flex items-center justify-between group transition-all">
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-2xl group-hover:scale-110 transition">${c.flavors.e}</div>
+                            <div class="text-left">
+                                <h3 class="text-lg font-black uppercase tracking-tighter">${c.name} <span class="text-emerald-500 font-bold">${c.sub}</span></h3>
+                                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">${c.type} • ${c.potency} THC</p>
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-500 group-hover:text-emerald-500 transition-transform duration-500" id="arrow-${c.id}">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                    </button>
                     
-                    <div class="profile-card">
-                        <div class="section-header">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h15"/><path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3"/><path d="M6 14h12"/></svg>
-                            CANNABINOID PROFILE
-                        </div>
-                        
-                        <div class="profile-stat" style="margin-top: 25px;">
-                            <div class="profile-stat-label">TOTAL THC</div>
-                            <div class="profile-stat-value">30%+</div>
-                        </div>
-                        <div class="divider" style="margin: 15px 0;"></div>
-                        <div class="profile-stat">
-                            <div class="profile-stat-label">TOTAL CANNABINOIDS</div>
-                            <div class="profile-stat-value">36%+</div>
+                    <div id="content-${c.id}" class="content-wrapper">
+                        <div class="p-6 md:p-12 border-t border-white/5 bg-slate-900/20">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                                <!-- Media -->
+                                <div class="lg:col-span-5 space-y-6">
+                                    <div class="glass-card rounded-3xl overflow-hidden aspect-square flex items-center justify-center p-8 bg-slate-900/60">
+                                        <img src="${c.img}" alt="${c.name}" class="w-full h-full object-contain shadow-2xl">
+                                    </div>
+                                    <div class="glass-card rounded-2xl p-6">
+                                        <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-4">Lineage</div>
+                                        <div class="text-xl font-bold">${c.lineage.join(' <span class="text-emerald-500/40">×</span> ')}</div>
+                                    </div>
+                                    <div class="glass-card rounded-2xl p-6">
+                                        <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-4">Reported Effects</div>
+                                        <div class="flex flex-wrap gap-2">
+                                            ${c.effects.map(e => `<span class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[9px] font-black border border-emerald-500/20 uppercase tracking-widest">${e}</span>`).join('')}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Specs -->
+                                <div class="lg:col-span-7 space-y-8">
+                                    <div>
+                                        <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-4 uppercase leading-tight">${c.name} <span class="gradient-text">${c.sub}</span></h2>
+                                        <p class="text-slate-400 leading-relaxed text-lg font-light">${c.description}</p>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="glass-card rounded-2xl p-6">
+                                            <h4 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Sensory Profile</h4>
+                                            <div class="flex gap-4">
+                                                ${c.flavors.map(f => `
+                                                    <div class="text-center min-w-[60px]">
+                                                        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-xl mb-2">${f.e}</div>
+                                                        <span class="text-[8px] font-black text-slate-500 tracking-widest uppercase">${f.l}</span>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                        <div class="glass-card rounded-2xl p-6 flex flex-col justify-center">
+                                            <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-2">Total Cannabinoids</div>
+                                            <div class="text-4xl font-black text-white">${c.total}</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tabs Area -->
+                                    <div class="space-y-6">
+                                        <div class="flex gap-8 border-b border-white/10">
+                                            <button onclick="setInternalTab('${c.id}', 'terps')" id="tab-${c.id}-terps" class="inner-tab-${c.id} active-tab pb-4 text-xs font-bold uppercase tracking-widest">Terpene Profile</button>
+                                            <button onclick="setInternalTab('${c.id}', 'labs')" id="tab-${c.id}-labs" class="inner-tab-${c.id} pb-4 text-xs font-bold uppercase tracking-widest text-slate-500">Analysis</button>
+                                        </div>
+                                        
+                                        <div id="view-${c.id}-terps" class="inner-view-${c.id}">
+                                            <div class="flex justify-between items-end mb-6">
+                                                <h4 class="text-xl font-bold">Top Terpenes (${c.terps.total})</h4>
+                                            </div>
+                                            <div class="space-y-4">
+                                                ${c.terps.list.map((t, i) => `
+                                                    <div class="terpene-row">
+                                                        <div class="flex justify-between text-[10px] font-black mb-2 uppercase tracking-widest">
+                                                            <span class="text-white/60">${i+1}. ${t.n}</span>
+                                                            <span class="text-emerald-400">${t.v}</span>
+                                                        </div>
+                                                        <div class="terpene-bar"><div class="terpene-fill terp-fill-${c.id}" style="width: 0%"></div></div>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+
+                                        <div id="view-${c.id}-labs" class="inner-view-${c.id} hidden">
+                                            <div class="grid grid-cols-1 gap-3">
+                                                ${Object.entries(c.lab).map(([k, v]) => `
+                                                    <div class="flex justify-between p-4 bg-white/5 rounded-xl border border-white/5">
+                                                        <span class="text-slate-400 text-[10px] font-black uppercase tracking-widest">${k}</span>
+                                                        <span class="text-white font-bold">${v}</span>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                `;
+                container.appendChild(item);
+            });
+        }
 
-                    <div class="profile-card">
-                        <div class="section-header">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></svg>
-                            TERPENE PROFILE
-                        </div>
+        function toggleAccordion(id) {
+            const allContent = document.querySelectorAll('.content-wrapper');
+            const allHeaders = document.querySelectorAll('.accordion-header');
+            const allArrows = document.querySelectorAll('[id^="arrow-"]');
+            
+            const targetContent = document.getElementById(`content-${id}`);
+            const targetHeader = document.getElementById(`header-${id}`);
+            const targetArrow = document.getElementById(`arrow-${id}`);
 
-                        <div class="terpene-header" style="margin-top: 15px;">
-                            <span class="terpene-header-title">Total Terpenes</span>
-                            <span class="terpene-header-value">2%+</span>
-                        </div>
+            const isOpening = !targetContent.classList.contains('open');
 
-                        <ul class="terpene-list">
-                            <li><span class="terpene-number">1</span> Limonene</li>
-                            <li><span class="terpene-number">2</span> Trans-Caryophyllene</li>
-                            <li><span class="terpene-number">3</span> Beta-Myrcene</li>
-                            <li><span class="terpene-number">4</span> Farnesene</li>
-                            <li><span class="terpene-number">5</span> Alpha-Humulene</li>
-                        </ul>
-                    </div>
+            // Close others
+            allContent.forEach(c => c.classList.remove('open'));
+            allHeaders.forEach(h => h.classList.remove('active'));
+            allArrows.forEach(a => a.style.transform = 'rotate(0deg)');
 
-                </div>
+            if (isOpening) {
+                targetContent.classList.add('open');
+                targetHeader.classList.add('active');
+                targetArrow.style.transform = 'rotate(180deg)';
+                currentId = id;
+                
+                // Animate Terpene Bars
+                setTimeout(() => {
+                    const fills = document.querySelectorAll(`.terp-fill-${id}`);
+                    fills.forEach((fill, i) => {
+                        fill.style.width = cultivars[id].terps.list[i].v;
+                    });
+                }, 400);
 
-            </div>
-        </main>
-    </div>
+                // Scroll into view nicely
+                setTimeout(() => {
+                    targetHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+            }
+        }
 
+        function setInternalTab(strainId, tabType) {
+            const views = document.querySelectorAll(`.inner-view-${strainId}`);
+            const tabs = document.querySelectorAll(`.inner-tab-${strainId}`);
+            
+            views.forEach(v => v.classList.add('hidden'));
+            tabs.forEach(t => t.classList.remove('active-tab', 'text-white'));
+            tabs.forEach(t => t.classList.add('text-slate-500'));
+
+            document.getElementById(`view-${strainId}-${tabType}`).classList.remove('hidden');
+            document.getElementById(`tab-${strainId}-${tabType}`).classList.add('active-tab', 'text-white');
+            document.getElementById(`tab-${strainId}-${tabType}`).classList.remove('text-slate-500');
+        }
+
+        window.onload = init;
+    </script>
 </body>
 </html>
