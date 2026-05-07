@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great White North Growers - Dante's Inferno #8</title>
+    <style>
+        :root {
+            --primary-light-green: #a2e0b1;
+            --dark-green: #235e41;
+            --text-dark: #1a202c;
+            --text-gray: #4a5568;
+            --bg-gray: #f7fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --tag-purple: #f3e8ff;
+            --tag-purple-text: #6b21a8;
+            --tag-green: #e6fffa;
+            --tag-green-text: #234e52;
+            --tag-blue: #ebf8ff;
+            --tag-blue-text: #2b6cb0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #edf2f7;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-dark);
+        }
+
+        .container {
+            background-color: var(--white);
+            max-width: 1000px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* --- Header --- */
+        .header {
+            background-color: var(--primary-light-green);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size: 14px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+
+        .nav-links span {
+            margin-left: 15px;
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        /* --- Main Layout --- */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 40px;
+            padding: 40px;
+            background-color: #fcfcfc;
+        }
+
+        /* --- Left Column --- */
+        .left-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-image-container {
+            background-color: var(--bg-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .product-image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            mix-blend-mode: multiply;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .info-label {
+            font-size: 10px;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .lineage-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .lineage-text span {
+            color: #cbd5e0;
+            margin: 0 5px;
+            font-weight: 300;
+        }
+
+        .breeder-text {
+            font-size: 10px;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .effects-wrapper {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .effect-tag {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .effect-euphoric { background-color: var(--tag-purple); color: var(--tag-purple-text); }
+        .effect-relaxing { background-color: var(--tag-green); color: var(--tag-green-text); }
+        .effect-sedating { background-color: var(--tag-blue); color: var(--tag-blue-text); }
+
+        /* --- Right Column --- */
+        .right-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .premium-tag {
+            background-color: #1a202c;
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .product-title {
+            font-size: 38px;
+            font-weight: 900;
+            color: #1a202c;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .product-title span {
+            color: var(--dark-green);
+        }
+
+        .product-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .product-description p {
+            margin-bottom: 15px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 20px 0;
+        }
+
+        /* Flavor Profile */
+        .section-header {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flavor-tags {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .flavor-tag {
+            background-color: #eaf8f0;
+            color: var(--dark-green);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .flavor-tag::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #48bb78;
+        }
+
+        /* Profiles Grid */
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .profile-card {
+            background-color: var(--bg-gray);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .profile-stat {
+            margin-bottom: 20px;
+        }
+
+        .profile-stat-label {
+            font-size: 10px;
+            color: #a0aec0;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .profile-stat-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--dark-green);
+        }
+
+        .terpene-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .terpene-header-title {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .terpene-header-value {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--dark-green);
+        }
+
+        .terpene-list {
+            list-style: none;
+        }
+
+        .terpene-list li {
+            font-size: 12px;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terpene-number {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 10px;
+            color: #a0aec0;
+            font-weight: 700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .profiles-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                GREAT WHITE NORTH<br>GROWERS
+            </div>
+            <div class="nav-links">
+                <span>PREMIUM</span>
+                <span>CULTIVAR</span>
+                <span>CATALOG</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            
+            <div class="left-col">
+                <div class="product-image-container">
+                    <img src="https://placehold.co/400x500/f7fafc/a0aec0?text=Insert+Cannabis+Image+Here" alt="Dante's Inferno #8">
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label">LINEAGE</span>
+                    <div class="lineage-text">
+                        Oreoz <span>×</span> Devil Driver
+                    </div>
+                    <div class="breeder-text">
+                        BREEDER: CLEARWATER X TIKI MADMAN
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label" style="display: flex; align-items: center; gap: 5px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                        EFFECTS
+                    </span>
+                    <div class="effects-wrapper">
+                        <span class="effect-tag effect-euphoric">EUPHORIC</span>
+                        <span class="effect-tag effect-relaxing">RELAXING</span>
+                        <span class="effect-tag effect-sedating">SEDATING</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <span class="premium-tag">PREMIUM CANNABIS STRAIN</span>
+                
+                <h1 class="product-title">DANTE'S INFERNO <span>#8</span></h1>
+                
+                <div class="product-description">
+                    <p>The abundant trichome production, combined with a sandy texture, makes this cultivar a hashmaker's dream. With moderate purpling and dense, sugary buds, the bag appeal is a solid 10/10.</p>
+                    <p>Agronomically, Dante's Inferno #8 excels with exceptional flower formation from top to bottom, maintaining density all the way down the stalk.</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div>
+                    <div class="section-header">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                        FLAVOUR PROFILE
+                    </div>
+                    <div class="flavor-tags">
+                        <span class="flavor-tag">CREAMY</span>
+                        <span class="flavor-tag">FRUITY</span>
+                        <span class="flavor-tag">GAS</span>
+                    </div>
+                </div>
+
+                <div class="profiles-grid">
+                    
+                    <div class="profile-card">
+                        <div class="section-header">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h15"/><path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3"/><path d="M6 14h12"/></svg>
+                            CANNABINOID PROFILE
+                        </div>
+                        
+                        <div class="profile-stat" style="margin-top: 25px;">
+                            <div class="profile-stat-label">TOTAL THC</div>
+                            <div class="profile-stat-value">30%+</div>
+                        </div>
+                        <div class="divider" style="margin: 15px 0;"></div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-label">TOTAL CANNABINOIDS</div>
+                            <div class="profile-stat-value">36%+</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <div class="section-header">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></svg>
+                            TERPENE PROFILE
+                        </div>
+
+                        <div class="terpene-header" style="margin-top: 15px;">
+                            <span class="terpene-header-title">Total Terpenes</span>
+                            <span class="terpene-header-value">2%+</span>
+                        </div>
+
+                        <ul class="terpene-list">
+                            <li><span class="terpene-number">1</span> Limonene</li>
+                            <li><span class="terpene-number">2</span> Trans-Caryophyllene</li>
+                            <li><span class="terpene-number">3</span> Beta-Myrcene</li>
+                            <li><span class="terpene-number">4</span> Farnesene</li>
+                            <li><span class="terpene-number">5</span> Alpha-Humulene</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
